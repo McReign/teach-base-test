@@ -1,7 +1,9 @@
-import { IntervieweeName } from '@/domain/interview/types/IntervieweeName';
+import { Order } from '@/domain/order/types/Order';
 
-export type CreatingInterviewStoreServicePort = {
-  getIntervieweeName: () => IntervieweeName | null;
-  setIntervieweeName: (name: IntervieweeName) => void;
+export type OrdersStoreServicePort = {
+  getOrders: () => Order[] | null;
+  setOrders: (orders: Order[]) => void;
+  getSearch: () => string;
+  setSearch: (search: string) => void;
   clearState: () => void;
 };

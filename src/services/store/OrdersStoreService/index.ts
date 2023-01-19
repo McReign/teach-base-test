@@ -1,29 +1,38 @@
 import { useCallback } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { TemplateStoreServicePort } from '@/application/__ports__/store/TemplateStoreServicePort';
-import { Template } from '@/domain/template/types/Template';
-import { CreatedTemplateState } from './types';
+import { OrdersStoreServicePort } from '@/application/__ports__/store/OrdersStoreServicePort';
+import { Order } from '@/domain/order/types/Order';
+import { OrdersState } from './types';
 
-const defaultState: CreatedTemplateState = null;
+const defaultState: OrdersState = {
+  orders: null,
+  search: '',
+};
 
-const store = atom<CreatedTemplateState>({
-  key: 'CreatedTemplate',
+const store = atom<OrdersState>({
+  key: 'Orders',
   default: defaultState,
 });
 
-export const useCreatedTemplateStoreService = (): TemplateStoreServicePort => {
+export const useOrdersStoreService = (): OrdersStoreServicePort => {
   const state = useRecoilValue(store);
   const setState = useSetRecoilState(store);
 
-  const getTemplate = useCallback(() => state, [state]);
+  const getOrders = useCallback(() => state.orders, [state]);
 
-  const setTemplate = useCallback((template: Template) => setState(template), [setState]);
+  const setOrders = useCallback((orders: Order[]) => setState((prev) => ({ ...prev, orders })), [setState]);
 
-  const clearTemplate = useCallback(() => setState(defaultState), [setState]);
+  const getSearch = useCallback(() => state.search, [state]);
+
+  const setSearch = useCallback((search: string) => setState((prev) => ({ ...prev, search })), [setState]);
+
+  const clearState = useCallback(() => setState(defaultState), [setState]);
 
   return {
-    setTemplate,
-    getTemplate,
-    clearTemplate,
+    getOrders,
+    setOrders,
+    getSearch,
+    setSearch,
+    clearState,
   };
 };

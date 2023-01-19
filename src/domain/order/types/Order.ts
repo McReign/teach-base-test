@@ -1,8 +1,4 @@
-export type FlightOrderId = string;
-export type FlightPoint = string;
+import { FlightOrder } from '@/domain/order/types/FlightOrder';
+import { HotelOrder } from '@/domain/order/types/HotelOrder';
 
-export type FlightOrder = {
-  id: FlightOrderId;
-  sourcePoint: FlightPoint,
-  destinationPoint: FlightPoint,
-};
+export type Order = FlightOrder | HotelOrder;

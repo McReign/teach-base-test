@@ -1,7 +1,5 @@
-import { EvaluationCriteriaTitle } from '@/domain/evaluationCriteria/types/EvaluationCriteriaTitle';
-import { EvaluationCriteriaId } from '@/domain/evaluationCriteria/types/EvaluationCriteriaId';
-
-export type Order = {
-  id: EvaluationCriteriaId;
-  title: EvaluationCriteriaTitle;
+export type FlightOrder = {
+  id: string;
+  sourcePoint: string,
+  destinationPoint: string,
 };

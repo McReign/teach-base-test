@@ -1,34 +1,27 @@
-import { TemplateStoreServicePort } from '@/application/__ports__/store/TemplateStoreServicePort';
 import { UseCasePort } from '@/application/__ports__/application/UseCasePort';
-import { TemplateApiServicePort } from '@/application/__ports__/api/TemplateApiServicePort';
-import { TemplateId } from '@/domain/template/types/TemplateId';
 import { StatusServicePort, Error } from '@/application/__ports__/status/StatusServicePort';
+import { OrdersStoreServicePort } from '@/application/__ports__/store/OrdersStoreServicePort';
+import { OrdersApiServicePort } from '@/application/__ports__/api/OrdersApiServicePort';
 
-export type LoadTemplateIfDoesntExistUseCaseServices = {
-  createdTemplateStoreService: TemplateStoreServicePort;
-  templateApiService: TemplateApiServicePort;
+export type LoadOrdersUseCaseServices = {
+  ordersStoreService: OrdersStoreServicePort;
+  ordersApiService: OrdersApiServicePort;
   statusService: StatusServicePort;
 };
-export type LoadTemplateIfDoesntExistUseCaseExecutor = (id: TemplateId) => Promise<void>;
+export type LoadOrdersUseCaseExecutor = () => Promise<void>;
 
-export const loadTemplateIfDoesntExistUseCase: UseCasePort<
-  LoadTemplateIfDoesntExistUseCaseServices,
-  LoadTemplateIfDoesntExistUseCaseExecutor
-> = ({ createdTemplateStoreService, templateApiService, statusService }) => {
-  const execute: LoadTemplateIfDoesntExistUseCaseExecutor = async (id) => {
+export const loadOrdersUseCase: UseCasePort<LoadOrdersUseCaseServices, LoadOrdersUseCaseExecutor> = ({
+  ordersStoreService,
+  ordersApiService,
+  statusService,
+}) => {
+  const execute: LoadOrdersUseCaseExecutor = async () => {
     statusService.setStatus('PENDING');
     statusService.setError(null);
 
     try {
-      const template = createdTemplateStoreService.getTemplate();
-
-      if (template) {
-        statusService.setStatus('SUCCESS');
-        return Promise.resolve();
-      }
-
-      const loadedTemplate = await templateApiService.get(id);
-      createdTemplateStoreService.setTemplate(loadedTemplate);
+      const orders = await ordersApiService.getOrders();
+      ordersStoreService.setOrders(orders);
 
       statusService.setStatus('SUCCESS');
     } catch (error) {

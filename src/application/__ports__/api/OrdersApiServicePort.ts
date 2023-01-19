@@ -1,9 +1,5 @@
-import { InterviewId } from '@/domain/interview/types/InterviewId';
-import { Interview } from '@/domain/interview/types/Interview';
-import { IntervieweeName } from '@/domain/interview/types/IntervieweeName';
+import { Order } from '@/domain/order/types/Order';
 
-export type InterviewApiServicePort = {
-  create: (intervieweeName: IntervieweeName) => Promise<Interview>;
-  complete: (interview: Interview) => Promise<Interview>;
-  get: (id: InterviewId) => Promise<Interview>;
+export type OrdersApiServicePort = {
+  getOrders: () => Promise<Order[]>;
 };

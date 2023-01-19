@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { loadOrdersUseCase } from '@/application/orders/loadOrders';
+import { BaseTemplate } from '@/ui/templates/BaseTemplate';
+import { Header } from '@/ui/common/Header';
+import { useStatusService } from '@/services/status/StatusService';
+import { useOrdersStoreService } from '@/services/store/OrdersStoreService';
+import { useOrdersApiService } from '@/services/api/OrdersApiService';
 import styles from './styles.module.scss';
-import { useRouterService } from '@/services/router/RouterService';
-import { goToCreatingTemplateUseCase } from '@/application/templates/goToCreatingTemplate';
 
 export function HomePage() {
-  const routerService = useRouterService();
+  const statusService = useStatusService();
+  const ordersStoreService = useOrdersStoreService();
+  const ordersApiService = useOrdersApiService();
 
-  const { execute: goToCreatingTemplate } = goToCreatingTemplateUseCase({ routerService });
+  const orders = ordersStoreService.getOrders();
+
+  const { execute: loadOrders } = loadOrdersUseCase({ statusService, ordersStoreService, ordersApiService });
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <h1>HomePage</h1>
-      <button onClick={() => goToCreatingTemplate()}>Create template</button>
-    </div>
+    <BaseTemplate header={<Header />}>
+      {orders?.length ? orders?.map(({ id }) => <div key={id}>Order {id}</div>) : <div>Empty</div>}
+    </BaseTemplate>
   );
 }

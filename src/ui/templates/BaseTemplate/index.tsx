@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import cn from 'classnames';
 import styles from './styles.module.scss';
-import { useRouterService } from '@/services/router/RouterService';
-import { goToCreatingTemplateUseCase } from '@/application/templates/goToCreatingTemplate';
 
-export function HomePage() {
-  const routerService = useRouterService();
+export interface BaseTemplateProps {
+  className?: string;
+  header: ReactNode;
+  children: ReactNode;
+}
 
-  const { execute: goToCreatingTemplate } = goToCreatingTemplateUseCase({ routerService });
+export function BaseTemplate(props: BaseTemplateProps) {
+  const { className, header, children } = props;
 
   return (
-    <div className={styles.wrapper}>
-      <h1>HomePage</h1>
-      <button onClick={() => goToCreatingTemplate()}>Create template</button>
+    <div className={cn(styles.baseTemplate, className)}>
+      <header>{header}</header>
+      <main>{children}</main>
     </div>
   );
 }

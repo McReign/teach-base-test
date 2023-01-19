@@ -1,3 +1,6 @@
-import { Template } from '@/domain/template/types/Template';
+import { Order } from '@/domain/order/types/Order';
 
-export type CreatedTemplateState = Template | null;
+export type OrdersState = {
+  orders: Order[] | null;
+  search: string;
+};

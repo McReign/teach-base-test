@@ -1,5 +1,5 @@
-import { EvaluationCriteriaTitle } from '@/domain/evaluationCriteria/types/EvaluationCriteriaTitle';
+import { Order } from '@/domain/order/types/Order';
 
-export function validateEvaluationCriteriaTitle(title: EvaluationCriteriaTitle): boolean {
-  return !!title;
+export function searchOrders(orders: Order[], search: string): Order[] {
+  return orders;
 }
