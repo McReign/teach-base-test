@@ -10,8 +10,8 @@ export const MOCK_ORDERS: Order[] = [
     price: 86,
     bookingReference: 'Q5Z9XF',
     passengers: ['Michael C.', 'Andrey D.'],
-    dateStart: '2023-03-16T12:43+03:00',
-    dateEnd: '2023-03-23T12:43+03:00',
+    dateStart: '2022-03-16T12:43+03:00',
+    dateEnd: '2022-03-23T12:43+03:00',
     avatar: FlightAvatar,
   },
   {

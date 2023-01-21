@@ -1,0 +1,36 @@
+@import '../../styles/tokens';
+
+.tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid $borderOpaque;
+  padding: 0 16px 6px;
+  color: $contentSecondary;
+  cursor: pointer;
+  transition: border-color 0.1s, color 0.1s;
+
+  &:hover {
+    border-bottom-color: darken($borderOpaque, 20%);
+    color: darken($contentSecondary, 20%);
+  }
+
+  &.active {
+    border-bottom-color: $borderStateSelected;
+    color: $contentPrimary;
+  }
+}
+
+.tabText {
+  color: inherit;
+}
+
+.content {
+  margin-top: 32px;
+}

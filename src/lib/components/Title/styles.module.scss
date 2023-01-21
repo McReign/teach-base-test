@@ -1,0 +1,55 @@
+@import '../../styles/tokens';
+
+.title {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: $contentPrimary;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.h4 {
+  font-size: 26px;
+  line-height: 36px;
+}
+
+.h5 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.grey300 {
+  color: $grey300;
+}
+
+.grey400 {
+  color: $grey400;
+}
+
+.grey500 {
+  color: $grey500;
+}
+
+.tertiary {
+  color: $contentTertiary;
+}
+
+.secondary {
+  color: $contentSecondary;
+}
+
+.secondaryLight {
+  color: $contentSecondaryLight;
+}
+
+.primary {
+  color: $contentPrimary;
+}
+
+.accent {
+  color: $contentAccent;
+}

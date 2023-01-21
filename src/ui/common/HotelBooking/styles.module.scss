@@ -1,0 +1,22 @@
+@import '../../../lib/styles/tokens';
+
+.container {
+  display: flex;
+}
+
+.record {
+  display: flex;
+  flex-direction: column;
+}
+
+.recordDescription {
+  margin-top: 4px;
+  white-space: pre-wrap;
+}
+
+.arrowIcon {
+  align-self: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 33px 0 31px;
+}

@@ -1,3 +1,26 @@
-.header {
+@import '../../../lib/styles/tokens';
 
+.header {
+  background: $white;
+  box-shadow: 0 4px 32px transparentize($black, 0.92);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.logo {
+  width: 135px;
+}
+
+.subInfo {
+  display: flex;
+  align-items: center;
+}
+
+.user {
+  margin-left: 15px;
 }

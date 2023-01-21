@@ -1,3 +1,4 @@
+import './Entry.scss';
 import React from 'react';
 import { Router } from '@/services/router/RouterService';
 import { StoreServiceRoot } from '@/services/store/StoreServiceRoot';

@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes as ExternalRoutes,
   Route as ExternalRoute,
+  Link as ExternalLink,
   generatePath,
   useMatch,
 } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { RouterServicePort } from '@/application/__ports__/router/RouterServiceP
 export const Router = BrowserRouter;
 export const Routes = ExternalRoutes;
 export const Route = ExternalRoute;
+export const Link = ExternalLink;
 
 export const ROUTE_PATH = {
   HOME: '/',
@@ -25,9 +27,12 @@ export function useRouterService(): RouterServicePort {
 
   return {
     goToHomePage: () => navigate(generatePath(ROUTE_PATH.HOME)),
+    getHomePageUrl: () => generatePath(ROUTE_PATH.HOME),
     getHomePagePath: () => ROUTE_PATH.HOME,
     goToFlightOrderPage: (id: string) => navigate(generatePath(ROUTE_PATH.FLIGHT_ORDER, { id })),
+    getFlightOrderUrl: (id: string) => generatePath(ROUTE_PATH.FLIGHT_ORDER, { id }),
     goToHotelOrderPage: (id: string) => navigate(generatePath(ROUTE_PATH.HOTEL_ORDER, { id })),
+    getHotelOrderUrl: (id: string) => generatePath(ROUTE_PATH.HOTEL_ORDER, { id }),
     getFlightOrderPath: () => ROUTE_PATH.FLIGHT_ORDER,
     getHotelOrderPath: () => ROUTE_PATH.HOTEL_ORDER,
     getFlightOrderPageId: () => flightOrderPageMatch?.params.id || null,

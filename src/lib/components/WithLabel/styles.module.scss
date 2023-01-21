@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  cursor: auto;
+}
+
+.label {
+  text-transform: uppercase;
+}
+
+.content {
+  margin-top: var(--offset);
+}

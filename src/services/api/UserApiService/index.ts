@@ -4,7 +4,7 @@ import { MOCK_USER } from '../__mocks__/user';
 
 export function useUserApiService(): UserApiServicePort {
   function getUser(): Promise<User> {
-    return new Promise((resolve) => setTimeout(() => resolve(MOCK_USER), 500));
+    return new Promise((resolve) => setTimeout(() => resolve(MOCK_USER), 600));
   }
 
   return { getUser };

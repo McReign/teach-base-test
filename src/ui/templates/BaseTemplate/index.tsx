@@ -12,9 +12,9 @@ export function BaseTemplate(props: BaseTemplateProps) {
   const { className, header, children } = props;
 
   return (
-    <div className={cn(styles.baseTemplate, className)}>
-      <header>{header}</header>
-      <main>{children}</main>
+    <div className={cn(styles.wrapper, className)}>
+      <header className={styles.header}>{header}</header>
+      <main className={styles.content}>{children}</main>
     </div>
   );
 }

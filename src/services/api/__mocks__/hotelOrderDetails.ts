@@ -21,7 +21,7 @@ export const MOCK_HOTEL_ORDER_DETAILS: HotelOrderDetails = {
   cancellationPolicy: 'FREE cancellation\nUntil 4:00 PM local hotel time on Mon 16 Mar 2021',
   address: {
     position: '320 W 36th St, New York, NY 10018',
-    coordinates: [0, 0],
+    coordinates: [55.75, 37.57],
     contact: '+1 8 692 52 000',
   },
 };

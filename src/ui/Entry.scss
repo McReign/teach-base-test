@@ -1,0 +1,27 @@
+@import '../lib/styles/fonts';
+@import '../lib/styles/tokens';
+
+@include font-faces('../assets/fonts');
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  min-height: 100%;
+  margin: 0;
+  background-color: $grey50;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  outline-color: $contentAccent;
+  box-sizing: border-box;
+  font-family: 'SF Pro Display', sans-serif;
+}

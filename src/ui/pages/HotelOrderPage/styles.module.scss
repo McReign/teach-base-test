@@ -1,0 +1,77 @@
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.formContainer {
+  padding: 32px 0;
+  height: 100%;
+}
+
+.formContainer,
+.mapContainer {
+  display: flex;
+}
+
+.mapContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.form,
+.formEmptyPlaceholder,
+.mapEmptyPlaceholder,
+.map {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+}
+
+.formEmptyPlaceholder,
+.map {
+  margin-left: 32px;
+}
+
+.form {
+  z-index: 2;
+}
+
+.emailAddress {
+  margin-top: 16px;
+}
+
+.mainInfo {
+  display: flex;
+  margin-top: 24px;
+}
+
+.pin {
+  margin-left: 32px;
+}
+
+.name,
+.bookings,
+.guests,
+.address,
+.cancellationPolicy,
+.price {
+  margin-top: 32px;
+}
+
+.description {
+  margin-top: 12px;
+}
+
+.booking {
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+.guestsText,
+.cancellationPolicyText {
+  white-space: pre-wrap;
+}
