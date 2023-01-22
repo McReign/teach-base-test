@@ -51,7 +51,7 @@ export function HotelOrderPage() {
               </Grid>
             </Container>
             <div className={styles.mapContainer}>
-              <Grid className={styles.mapContainerGrid} gap={64}>
+              <Grid gap={64} fullHeight>
                 <Cell span={4} offset={4}>
                   <Map className={styles.map} point={order.address?.coordinates} />
                 </Cell>

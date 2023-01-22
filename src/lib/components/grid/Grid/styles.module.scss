@@ -4,4 +4,8 @@
   width: calc(100% + var(--hGap));
   margin-top: calc(var(--vGap) * -1);
   margin-left: calc(var(--hGap) * -1);
+
+  &.fullHeight {
+    height: calc(100% + var(--vGap));
+  }
 }

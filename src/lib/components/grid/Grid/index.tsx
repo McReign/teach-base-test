@@ -7,11 +7,12 @@ export interface GridProps {
   className?: string;
   gap?: number | [number, number];
   cols?: number;
+  fullHeight?: boolean;
   children: ReactNode;
 }
 
 export function Grid(props: GridProps) {
-  const { className, children, gap: dirtyGap = 8, cols = 8 } = props;
+  const { className, children, gap: dirtyGap = 8, cols = 8, fullHeight } = props;
 
   const gap = useMemo<[number, number]>(() => (Array.isArray(dirtyGap) ? dirtyGap : [dirtyGap, dirtyGap]), [dirtyGap]);
   const contextState = useMemo<GridContextState>(() => ({ gap, cols }), [gap, cols]);
@@ -22,7 +23,7 @@ export function Grid(props: GridProps) {
 
   return (
     <GridContext.Provider value={contextState}>
-      <div className={cn(styles.container, className)} style={style}>
+      <div className={cn(styles.container, fullHeight && styles.fullHeight, className)} style={style}>
         {children}
       </div>
     </GridContext.Provider>
