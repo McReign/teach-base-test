@@ -16,6 +16,8 @@ import { HotelOrderCard } from '@/ui/common/HotelOrderCard';
 import { Container } from '@/lib/components/Container';
 import { Title } from '@/lib/components/Title';
 import { WithEmptyData } from '@/lib/components/WithEmptyData';
+import { Grid } from '@/lib/components/grid/Grid';
+import { Cell } from '@/lib/components/grid/Cell';
 import styles from './styles.module.scss';
 
 export function HomePage() {
@@ -34,15 +36,19 @@ export function HomePage() {
   const renderTabContent = useCallback(
     (orders: Order[] | null) => (
       <WithEmptyData data={orders} isEmpty={(orders) => !orders?.length}>
-        {(orders) =>
-          orders.map((order) =>
-            isFlightOrder(order) ? (
-              <FlightOrderCard key={order.id} className={styles.order} order={order} />
-            ) : (
-              <HotelOrderCard key={order.id} className={styles.order} order={order} />
-            )
-          )
-        }
+        {(orders) => (
+          <Grid gap={4}>
+            {orders.map((order) => (
+              <Cell key={order.id}>
+                {isFlightOrder(order) ? (
+                  <FlightOrderCard className={styles.order} order={order} />
+                ) : (
+                  <HotelOrderCard className={styles.order} order={order} />
+                )}
+              </Cell>
+            ))}
+          </Grid>
+        )}
       </WithEmptyData>
     ),
     []
@@ -74,19 +80,23 @@ export function HomePage() {
 
   return (
     <RequestWrapper statusService={statusService}>
-      <Container>
-        <div className={styles.content}>
-          <div className={styles.title}>
-            <Title type="h4">Orders</Title>
-            <SearchInput
-              className={styles.searchInput}
-              value={search}
-              placeholder="Search in orders"
-              onChange={updateOrdersSearch}
-            />
-          </div>
-          <Tabs className={styles.tabs} value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
-        </div>
+      <Container className={styles.content}>
+        <Grid gap={22}>
+          <Cell>
+            <div className={styles.title}>
+              <Title type="h4">Orders</Title>
+              <SearchInput
+                className={styles.searchInput}
+                value={search}
+                placeholder="Search in orders"
+                onChange={updateOrdersSearch}
+              />
+            </div>
+          </Cell>
+          <Cell>
+            <Tabs value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
+          </Cell>
+        </Grid>
       </Container>
     </RequestWrapper>
   );

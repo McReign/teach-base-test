@@ -2,34 +2,3 @@
   padding: 32px 0;
 }
 
-.emailAddress {
-  margin-top: 16px;
-}
-
-.mainInfo,
-.bookings,
-.passengers {
-  margin-top: 24px;
-}
-
-.mainInfo {
-  display: flex;
-}
-
-.price {
-  margin-left: 431px;
-}
-
-.booking {
-  & + & {
-    margin-top: 16px;
-  }
-}
-
-.passengersText {
-  white-space: pre-wrap;
-}
-
-.subInfo {
-  margin-top: 40px;
-}

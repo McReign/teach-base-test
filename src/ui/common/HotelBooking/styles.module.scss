@@ -1,7 +1,8 @@
 @import '../../../lib/styles/tokens';
 
-.container {
+.startRecordWrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 .record {
@@ -18,5 +19,5 @@
   align-self: center;
   width: 24px;
   height: 24px;
-  margin: 0 33px 0 31px;
+  margin: 0 25px 0 23px;
 }

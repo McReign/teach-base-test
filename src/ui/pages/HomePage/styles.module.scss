@@ -11,13 +11,3 @@
 .searchInput {
   width: 188px;
 }
-
-.tabs {
-  margin-top: 24px;
-}
-
-.order {
-  & + & {
-    margin-top: 4px;
-  }
-}

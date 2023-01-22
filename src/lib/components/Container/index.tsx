@@ -10,5 +10,9 @@ export interface ContainerProps {
 export function Container(props: ContainerProps) {
   const { className, children } = props;
 
-  return <div className={cn(styles.container, className)}>{children}</div>;
+  return (
+    <div className={cn(styles.container, className)}>
+      <div className={styles.content}>{children}</div>
+    </div>
+  );
 }
