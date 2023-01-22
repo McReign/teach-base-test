@@ -48,7 +48,7 @@ export function HotelOrderPage() {
     <RequestWrapper statusService={statusService}>
       <WithEmptyData data={order} isEmpty={(order) => !order}>
         {(order) => (
-          <div className={styles.container}>
+          <div className={styles.content}>
             <Container className={styles.formContainer}>
               <div className={styles.form}>
                 {order.status === 'CONFIRMED' && (

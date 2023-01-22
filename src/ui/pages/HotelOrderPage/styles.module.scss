@@ -1,10 +1,5 @@
-.container {
+.content {
   position: relative;
-  height: 100%;
-}
-
-.formContainer {
-  padding: 32px 0;
   height: 100%;
 }
 
@@ -36,6 +31,7 @@
 }
 
 .form {
+  padding: 32px 0;
   z-index: 2;
 }
 

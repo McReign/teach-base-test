@@ -1,4 +1,7 @@
+$sideOffset: 16px;
+
 .container {
-  max-width: 1080px;
+  max-width: calc(1080px + (2 * $sideOffset));
   margin: 0 auto;
+  padding: 0 $sideOffset;
 }

@@ -74,17 +74,19 @@ export function HomePage() {
 
   return (
     <RequestWrapper statusService={statusService}>
-      <Container className={styles.container}>
-        <div className={styles.title}>
-          <Title type="h4">Orders</Title>
-          <SearchInput
-            className={styles.searchInput}
-            value={search}
-            placeholder="Search in orders"
-            onChange={updateOrdersSearch}
-          />
+      <Container>
+        <div className={styles.content}>
+          <div className={styles.title}>
+            <Title type="h4">Orders</Title>
+            <SearchInput
+              className={styles.searchInput}
+              value={search}
+              placeholder="Search in orders"
+              onChange={updateOrdersSearch}
+            />
+          </div>
+          <Tabs className={styles.tabs} value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
         </div>
-        <Tabs className={styles.tabs} value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
       </Container>
     </RequestWrapper>
   );

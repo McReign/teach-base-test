@@ -45,16 +45,18 @@ export function Header() {
 
   return (
     <div className={styles.header}>
-      <Container className={styles.container}>
-        <Link to={routerService.getHomePageUrl()}>
-          <img className={styles.logo} src={Logo} alt="Logo" />
-        </Link>
-        <div className={styles.subInfo}>
-          <SelectGroup>
-            <Select value={language} options={languageOptions} onChange={updateLanguage} />
-            <Select value={currency} options={currencyOptions} onChange={updateCurrency} />
-          </SelectGroup>
-          {!!user && <User className={styles.user} name={user.name} avatar={user.avatar} direction="rtl" />}
+      <Container>
+        <div className={styles.content}>
+          <Link to={routerService.getHomePageUrl()}>
+            <img className={styles.logo} src={Logo} alt="Logo" />
+          </Link>
+          <div className={styles.subInfo}>
+            <SelectGroup>
+              <Select value={language} options={languageOptions} onChange={updateLanguage} />
+              <Select value={currency} options={currencyOptions} onChange={updateCurrency} />
+            </SelectGroup>
+            {!!user && <User className={styles.user} name={user.name} avatar={user.avatar} direction="rtl" />}
+          </div>
         </div>
       </Container>
     </div>
