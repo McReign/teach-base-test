@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { BaseTemplate } from '@/ui/templates/BaseTemplate';
-import { Header } from '@/ui/common/Header';
 import { useStatusService } from '@/services/status/StatusService';
 import { useOrdersApiService } from '@/services/api/OrdersApiService';
 import { loadFlightOrderDetailsUseCase } from '@/application/orders/loadFlightOrderDetails';
@@ -47,46 +45,44 @@ export function FlightOrderPage() {
   }, [id]);
 
   return (
-    <BaseTemplate header={<Header />}>
-      <RequestWrapper statusService={statusService}>
-        <WithEmptyData data={order} isEmpty={(order) => !order}>
-          {(order) => (
-            <Container className={styles.container}>
-              {order.status === 'CONFIRMED' && (
-                <Title type="h4" color="grey300">
-                  Success, have a nice flight!
-                </Title>
-              )}
-              <Title type="h4">Order details</Title>
-              <Text className={styles.emailAddress} as="p">
-                <Text type="body2" color="grey400">
-                  Email sent on{' '}
-                </Text>
-                <Text type="body2">{order.email}</Text>
+    <RequestWrapper statusService={statusService}>
+      <WithEmptyData data={order} isEmpty={(order) => !order}>
+        {(order) => (
+          <Container className={styles.container}>
+            {order.status === 'CONFIRMED' && (
+              <Title type="h4" color="grey300">
+                Success, have a nice flight!
+              </Title>
+            )}
+            <Title type="h4">Order details</Title>
+            <Text className={styles.emailAddress} as="p">
+              <Text type="body2" color="grey400">
+                Email sent on{' '}
               </Text>
-              <div className={styles.mainInfo}>
-                <WithLabel label="Booking reference" offset={12}>
-                  <Title type="h5">{order.bookingReference}</Title>
-                </WithLabel>
-                <WithLabel className={styles.price} label="Order amount" offset={4}>
-                  <Title type="h5">{withCurrency(splitThousands(order.price), currency)}</Title>
-                </WithLabel>
-              </div>
-              <WithLabel className={styles.bookings} label="Booked flights" offset={0}>
-                {order.bookings?.map((flightOrderDetailsBooking, index) => (
-                  <FlightBooking key={index} className={styles.booking} booking={flightOrderDetailsBooking} />
-                ))}
+              <Text type="body2">{order.email}</Text>
+            </Text>
+            <div className={styles.mainInfo}>
+              <WithLabel label="Booking reference" offset={12}>
+                <Title type="h5">{order.bookingReference}</Title>
               </WithLabel>
-              <WithLabel className={styles.passengers} label="Passengers" offset={8}>
-                <Text className={styles.passengersText} type="body1">
-                  {order.passengers?.join(',\n')}
-                </Text>
+              <WithLabel className={styles.price} label="Order amount" offset={4}>
+                <Title type="h5">{withCurrency(splitThousands(order.price), currency)}</Title>
               </WithLabel>
-              <TrackFlightAdvisor className={styles.subInfo} />
-            </Container>
-          )}
-        </WithEmptyData>
-      </RequestWrapper>
-    </BaseTemplate>
+            </div>
+            <WithLabel className={styles.bookings} label="Booked flights" offset={0}>
+              {order.bookings?.map((flightOrderDetailsBooking, index) => (
+                <FlightBooking key={index} className={styles.booking} booking={flightOrderDetailsBooking} />
+              ))}
+            </WithLabel>
+            <WithLabel className={styles.passengers} label="Passengers" offset={8}>
+              <Text className={styles.passengersText} type="body1">
+                {order.passengers?.join(',\n')}
+              </Text>
+            </WithLabel>
+            <TrackFlightAdvisor className={styles.subInfo} />
+          </Container>
+        )}
+      </WithEmptyData>
+    </RequestWrapper>
   );
 }

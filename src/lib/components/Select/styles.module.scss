@@ -52,7 +52,10 @@
   cursor: pointer;
 
   &.active {
-    border: 2px solid transparentize($contentAccent, 0.6);
+    border-left-color: $green;
+    border-top-color: $green;
+    border-right-color: $yellow;
+    border-bottom-color: $red;
   }
 
   &:hover {

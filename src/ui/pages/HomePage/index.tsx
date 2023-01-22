@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { loadOrdersUseCase } from '@/application/orders/loadOrders';
-import { BaseTemplate } from '@/ui/templates/BaseTemplate';
-import { Header } from '@/ui/common/Header';
 import { useStatusService } from '@/services/status/StatusService';
 import { useOrdersStoreService } from '@/services/store/OrdersStoreService';
 import { useOrdersApiService } from '@/services/api/OrdersApiService';
@@ -75,21 +73,19 @@ export function HomePage() {
   }, []);
 
   return (
-    <BaseTemplate header={<Header />}>
-      <RequestWrapper statusService={statusService}>
-        <Container className={styles.container}>
-          <div className={styles.title}>
-            <Title type="h4">Orders</Title>
-            <SearchInput
-              className={styles.searchInput}
-              value={search}
-              placeholder="Search in orders"
-              onChange={updateOrdersSearch}
-            />
-          </div>
-          <Tabs className={styles.tabs} value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
-        </Container>
-      </RequestWrapper>
-    </BaseTemplate>
+    <RequestWrapper statusService={statusService}>
+      <Container className={styles.container}>
+        <div className={styles.title}>
+          <Title type="h4">Orders</Title>
+          <SearchInput
+            className={styles.searchInput}
+            value={search}
+            placeholder="Search in orders"
+            onChange={updateOrdersSearch}
+          />
+        </div>
+        <Tabs className={styles.tabs} value={type} tabs={tabs} contents={contents} onChange={updateOrdersType} />
+      </Container>
+    </RequestWrapper>
   );
 }

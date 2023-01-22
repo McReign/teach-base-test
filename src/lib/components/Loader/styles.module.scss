@@ -1,3 +1,5 @@
+@import '../../styles/tokens';
+
 .loader {
   display: inline-block;
   width: 50px;
@@ -5,10 +7,10 @@
   border-width: 6px;
   border-style: solid;
   border-radius: 50%;
-  border-left-color: #41b17e;
-  border-top-color: #41b17e;
-  border-right-color: #fdf13d;
-  border-bottom-color: #dc3e32;
+  border-left-color: $green;
+  border-top-color: $green;
+  border-right-color: $yellow;
+  border-bottom-color: $red;
   animation: spin 0.8s infinite;
 }
 

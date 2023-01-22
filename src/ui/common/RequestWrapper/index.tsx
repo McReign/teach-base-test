@@ -19,5 +19,9 @@ export function RequestWrapper(props: RequestWrapperProps) {
     return <Text type="largeText">{statusService.getError()?.message}</Text>;
   }
 
+  if (statusService.getStatus() === 'IDLE') {
+    return null;
+  }
+
   return <>{children}</>;
 }
