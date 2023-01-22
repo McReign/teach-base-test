@@ -63,13 +63,3 @@ export function HotelOrderPage() {
     </RequestWrapper>
   );
 }
-
-// {/*<div className={styles.mapContainer}>*/}
-// {/*  <Grid gap={32} className={styles.mapContainerGrid}>*/}
-// {/*    <Cell span={4} offset={4}>*/}
-// {/*      <div className={styles.mapWrapper}>*/}
-// {/*        <Map className={styles.map} point={order.address?.coordinates} />*/}
-// {/*      </div>*/}
-// {/*    </Cell>*/}
-// {/*  </Grid>*/}
-// {/*</div>*/}
