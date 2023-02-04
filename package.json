@@ -1,7 +1,7 @@
 {
-  "name": "aita-test",
+  "name": "teach-base-test",
   "version": "1.0.0",
-  "description": "App In The Air Test App",
+  "description": "TeachBase Test App",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/McReign/aita-test.git"
+    "url": "git+https://github.com/McReign/teach-base-test.git"
   },
   "author": "dmmanshin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/McReign/aita-test/issues"
+    "url": "https://github.com/McReign/teach-base-test/issues"
   },
-  "homepage": "https://github.com/McReign/aita-test",
+  "homepage": "https://github.com/McReign/teach-base-test",
   "devDependencies": {
     "@types/react": "17.0.2",
     "@types/react-dom": "17.0.2",
@@ -32,12 +32,9 @@
     "vite": "^3.2.0"
   },
   "dependencies": {
-    "@pbe/react-yandex-maps": "^1.2.2",
     "classnames": "^2.3.2",
-    "date-fns": "^2.29.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-router-dom": "^6.4.2",
     "recoil": "^0.7.6",
     "vite-plugin-checker": "^0.5.1",
     "vite-tsconfig-paths": "^3.5.2"

@@ -1,0 +1,11 @@
+@import '../../../colors';
+
+.link {
+  text-decoration: none;
+  color: $primary;
+  transition: color 0.2s;
+
+  &:hover {
+    color: darken($primary, 10%);
+  }
+}

@@ -1,26 +1,12 @@
 import './Entry.scss';
 import React from 'react';
-import { withProviders } from '@/ui/hocs/withProviders';
-import { withUser } from '@/ui/hocs/withUser';
-import { HomePage } from '@/ui/pages/HomePage';
-import { FlightOrderPage } from '@/ui/pages/FlightOrderPage';
-import { HotelOrderPage } from '@/ui/pages/HotelOrderPage';
-import { Route, Routes, useRouterService } from '@/services/router/RouterService';
-import { BaseTemplate } from '@/ui/templates/BaseTemplate';
-import { Header } from '@/ui/common/Header';
+import { StoreServiceRoot } from '@/services/store/StoreServiceRoot';
+import { AuthPage } from '@/ui/pages/AuthPage';
 
-function EntryComponent() {
-  const routerService = useRouterService();
-
+export function Entry() {
   return (
-    <BaseTemplate header={<Header />}>
-      <Routes>
-        <Route path={routerService.getHomePagePath()} element={<HomePage />} />
-        <Route path={routerService.getFlightOrderPath()} element={<FlightOrderPage />} />
-        <Route path={routerService.getHotelOrderPath()} element={<HotelOrderPage />} />
-      </Routes>
-    </BaseTemplate>
+    <StoreServiceRoot>
+      <AuthPage />
+    </StoreServiceRoot>
   );
 }
-
-export const Entry = withProviders(withUser(EntryComponent));

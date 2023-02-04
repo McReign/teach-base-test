@@ -1,0 +1,27 @@
+@import '../../colors';
+
+.primary {
+  color: $textPrimary;
+}
+
+.success {
+  color: $success;
+}
+
+.error {
+  color: $error;
+}
+
+.muted {
+  color: $textMuted;
+}
+
+.sm {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.md {
+  font-size: 15px;
+  line-height: 20px;
+}

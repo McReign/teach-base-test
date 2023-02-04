@@ -1,0 +1,75 @@
+@import '../../colors';
+
+.passwordLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.field {
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.submitAction {
+  flex-basis: 180px;
+  max-width: 100%;
+}
+
+.alternatives {
+  margin-top: 32px;
+}
+
+.alternativesLabelWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba($secondary, 0) 0,
+      rgba($secondary, 0.2) 20%,
+      rgba($secondary, 0.5) 60%,
+      rgba($secondary, 0)
+    );
+  }
+}
+
+.alternativesLabel {
+  padding: 0 10px;
+  background: $white;
+  z-index: 1;
+}
+
+.alternativesActions {
+  margin-top: 24px;
+}
+
+.alternativesAction {
+  width: 100%;
+
+  & + & {
+    margin-top: 8px;
+  }
+}
+
+.alternativeLogo {
+  width: 24px;
+  height: 24px;
+  margin-left: 6px;
+}

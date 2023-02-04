@@ -1,0 +1,11 @@
+$primary: #0dc04b;
+$secondary: #d6d6d6;
+$white: #ffffff;
+$black: #000000;
+
+$error: #ff1f1f;
+$success: $primary;
+
+$textPrimary: #262626;
+$textSecondary: $white;
+$textMuted: transparentize($textPrimary, 0.6);
