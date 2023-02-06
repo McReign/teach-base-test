@@ -1,32 +1,48 @@
 import React from 'react';
 import { AuthForm } from '@/ui/common/AuthForm';
-import { useAuthViewStoreService } from '@/services/store/AuthViewStoreService';
-import { updateEmailUseCase } from '@/application/auth/updateEmail';
-import { updatePasswordUseCase } from '@/application/auth/updatePassword';
 import { loginByEmailAndPasswordUseCase } from '@/application/auth/loginByEmailAndPassword';
 import { loginByGoogleUseCase } from '@/application/auth/loginByGoogle';
 import { useStatusService } from '@/services/status/StatusService';
 import { Title } from '@/ui/common/Typography/Title';
+import { useValidationService } from '@/services/validation/ValidationService';
+import { validateEmailExistence } from '@/domain/email/utils/validateEmailExistence';
+import { validateEmailFormat } from '@/domain/email/utils/validateEmailFormat';
+import { validatePasswordExistence } from '@/domain/password/utils/validatePasswordExistence';
 import styles from './styles.module.scss';
+import { useFormService } from '@/services/form/FormService';
+
+const EMAIL_REQUIRED_ERROR = 'Электронная почта обязательна';
+const EMAIL_FORMAT_ERROR = 'Неверный формат электронной почты';
+const PASSWORD_REQUIRED_ERROR = 'Пароль обязателен';
 
 export function AuthPage() {
-  const authViewStoreService = useAuthViewStoreService();
   const loginByEmailAndPasswordStatusService = useStatusService();
   const loginByGoogleStatusService = useStatusService();
-  const email = authViewStoreService.getEmail();
-  const password = authViewStoreService.getPassword();
+  const emailValidationService = useValidationService([
+    [validateEmailExistence, EMAIL_REQUIRED_ERROR],
+    [validateEmailFormat, EMAIL_FORMAT_ERROR],
+  ]);
+  const passwordValidationService = useValidationService([[validatePasswordExistence, PASSWORD_REQUIRED_ERROR]]);
+
+  const authFormService = useFormService({
+    fields: {
+      email: { defaultValue: '', validation: emailValidationService },
+      password: { defaultValue: '', validation: passwordValidationService },
+    },
+    onSubmit: () => loginByEmailAndPassword(),
+  });
+  const emailFieldState = authFormService.getFieldState('email');
+  const passwordFieldState = authFormService.getFieldState('password');
 
   const isLoginByEmailAndPasswordLoading = loginByEmailAndPasswordStatusService.getStatus() === 'PENDING';
   const isLoginByGoogleLoading = loginByGoogleStatusService.getStatus() === 'PENDING';
 
-  const { execute: updateEmail } = updateEmailUseCase({ authViewStoreService });
-  const { execute: updatePassword } = updatePasswordUseCase({ authViewStoreService });
   const { execute: loginByEmailAndPassword } = loginByEmailAndPasswordUseCase({
-    authViewStoreService,
+    authFormService,
     statusService: loginByEmailAndPasswordStatusService,
   });
   const { execute: loginByGoogle } = loginByGoogleUseCase({
-    authViewStoreService,
+    authFormService,
     statusService: loginByGoogleStatusService,
   });
 
@@ -36,14 +52,22 @@ export function AuthPage() {
         <Title level={1}>Вход</Title>
         <AuthForm
           className={styles.form}
-          email={email}
-          password={password}
+          email={emailFieldState.value}
+          password={passwordFieldState.value}
+          emailValid={emailFieldState.valid}
+          emailError={emailFieldState.error}
+          emailTouched={emailFieldState.touched}
+          passwordValid={passwordFieldState.valid}
+          passwordError={passwordFieldState.error}
+          passwordTouched={passwordFieldState.touched}
           loginByEmailAndPasswordLoading={isLoginByEmailAndPasswordLoading}
           loginByGoogleLoading={isLoginByGoogleLoading}
-          onEmailChange={updateEmail}
-          onPasswordChange={updatePassword}
-          onLoginByEmailAndPassword={loginByEmailAndPassword}
+          onEmailChange={authFormService.changeField('email')}
+          onPasswordChange={authFormService.changeField('password')}
+          onLoginByEmailAndPassword={authFormService.submitForm}
           onLoginByGoogle={loginByGoogle}
+          onEmailBlur={authFormService.blurField('email')}
+          onPasswordBlur={authFormService.blurField('password')}
         />
       </div>
     </main>

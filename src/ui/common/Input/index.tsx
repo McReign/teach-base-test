@@ -14,10 +14,23 @@ export interface InputProps {
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
 export function Input(props: InputProps) {
-  const { className, type = 'text', value, status, statusMessage, placeholder, label, onChange } = props;
+  const {
+    className,
+    type = 'text',
+    value,
+    status,
+    statusMessage,
+    placeholder,
+    label,
+    onChange,
+    onFocus,
+    onBlur,
+  } = props;
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     onChange?.(event.target.value);
@@ -37,6 +50,8 @@ export function Input(props: InputProps) {
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
       </label>
       {!!statusMessage && (

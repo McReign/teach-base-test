@@ -1,15 +1,15 @@
 import { UseCasePort } from '@/application/__ports__/application/UseCasePort';
 import { StatusServicePort, Error } from '@/application/__ports__/status/StatusServicePort';
-import { AuthViewStoreServicePort } from '@/application/__ports__/store/AuthViewStoreServicePort';
+import { FormServicePort } from '@/application/__ports__/form/FormServicePort';
 
 export type LoginByGoogleUseCaseServices = {
-  authViewStoreService: AuthViewStoreServicePort;
+  authFormService: FormServicePort<{ email: string; password: string }>;
   statusService: StatusServicePort;
 };
 export type LoginByGoogleUseCaseExecutor = () => Promise<void>;
 
 export const loginByGoogleUseCase: UseCasePort<LoginByGoogleUseCaseServices, LoginByGoogleUseCaseExecutor> = ({
-  authViewStoreService,
+  authFormService,
   statusService,
 }) => {
   const execute: LoginByGoogleUseCaseExecutor = async () => {
@@ -18,11 +18,11 @@ export const loginByGoogleUseCase: UseCasePort<LoginByGoogleUseCaseServices, Log
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      authViewStoreService.setEmail('');
-      authViewStoreService.setPassword('');
+      authFormService.clearForm();
 
       statusService.setStatus('SUCCESS');
     } catch (error) {
+      statusService.setStatus('ERROR');
       statusService.setError(error as Error);
     }
   };
